@@ -14,7 +14,7 @@
             <th>Fonte</th>
             <th>Valor Máximo</th>
             <th>Situação</th>
-        </tr>
+        {% comment %} </tr>
         {% for chamada in chamadas %}
         <tr>
             <td>{{ chamada.nome }}</td>
@@ -23,8 +23,8 @@
             <td>{{ chamada.fonte.url }}</td>
             <td>{{ chamada.valor_maximo }}</td>
             <td>{{ chamada.situacao }}</td>
-        </tr>
-        {% endfor %}
+        </tr> {% endcomment %}
+        {% comment %} {% endfor %} {% endcomment %}
     </table>
 </body>
 </html>
