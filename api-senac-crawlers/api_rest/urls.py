@@ -1,29 +1,19 @@
-# urls.py
 from django.urls import path
-
-from .views import (
-    EditalListCreate,
-    EditalDetail,
-    SiteListCreate,
-    SiteDetail,
-    UsuarioListCreate,
-    UsuarioDetail,
-    
-)
+from . import views
 
 urlpatterns = [
-    path('editais/', EditalListCreate.as_view(), name='edital-list-create'),  # Criação e listagem
-    path('editais/deletar/<int:pk>/', EditalDetail.as_view(), name='edital-delete'),  # Deleção
-    path('editais/atualizar/<int:pk>/', EditalDetail.as_view(), name='edital-update'),  # Atualização
-    path('editais/<int:pk>/', EditalDetail.as_view(), name='edital-detail'),  # Detalhamento
-    
-    path('sites/', SiteListCreate.as_view(), name='site-list-create'),  # Criação e listagem
-    path('sites/deletar/<int:pk>/', SiteDetail.as_view(), name='site-delete'),  # Deleção
-    path('sites/atualizar/<int:pk>/', SiteDetail.as_view(), name='site-update'),  # Atualização
-    path('sites/<int:pk>/', SiteDetail.as_view(), name='site-detail'),  # Detalhamento
-    
-    path('usuarios/', UsuarioListCreate.as_view(), name='usuario-list-create'),  # Criação e listagem
-    path('usuarios/deletar/<int:pk>/', UsuarioDetail.as_view(), name='usuario-delete'),  # Deleção
-    path('usuarios/atualizar/<int:pk>/', UsuarioDetail.as_view(), name='usuario-update'),  # Atualização
-    path('usuarios/<int:pk>/', UsuarioDetail.as_view(), name='usuario-detail'),  # Detalhamento
+    # Rota da página inicial
+    path('', views.home, name='home'),
+
+    # CRUD para Edital
+    path('editais/', views.edital_list, name='edital-list'),  # Listar e criar editais
+    path('editais/deletar/<int:pk>/', views.edital_detail, name='edital-detail'),  # Detalhar e deletar edital específico
+
+    # CRUD para Site
+    path('sites/', views.site_list, name='site-list'),  # Listar e criar sites
+    path('sites/deletar/<int:pk>/', views.site_detail, name='site-detail'),  # Detalhar e deletar site específico
+
+    # CRUD para Usuario
+    path('usuarios/', views.usuario_list, name='usuario-list'),  # Listar e criar usuários
+    path('usuarios/deletar/<int:pk>/', views.usuario_detail, name='usuario-detail'),  # Detalhar e deletar usuário específico
 ]
