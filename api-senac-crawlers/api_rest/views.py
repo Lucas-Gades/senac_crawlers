@@ -3,6 +3,14 @@ from rest_framework.response import Response
 from .models import Edital, Site, Usuario
 from .serializers import EditalSerializer, SiteSerializer, UsuarioSerializer
 
+
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Seja bem-vindo à API Senac Crawlers! :))")
+
+
 # CRUD para Edital
 class EditalListCreate(generics.ListCreateAPIView):
     queryset = Edital.objects.all()

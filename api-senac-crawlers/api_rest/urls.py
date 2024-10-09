@@ -1,5 +1,6 @@
 # urls.py
 from django.urls import path
+
 from .views import (
     EditalListCreate,
     EditalDetail,
@@ -7,6 +8,7 @@ from .views import (
     SiteDetail,
     UsuarioListCreate,
     UsuarioDetail,
+    
 )
 
 urlpatterns = [
