@@ -9,6 +9,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, EmailValidator
 
+date_dafault ="1900-01-01",
 
 class Edital(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -41,6 +42,7 @@ class Edital(models.Model):
             MinValueValidator(0),  # O valor não pode ser negativo
         ]
     )
+   
     valor_maximo = models.FloatField(
         blank=True,
         null=True,
@@ -70,12 +72,6 @@ class Edital(models.Model):
             self.link = "Link do campo vazio!"
         if not self.img_logo:
             self.img_logo = "Logo do campo vazio!"
-        if not self.vencimento:
-            self.vencimento = "Vencimento do campo vazio!"
-        if not self.prazo_execucao:
-            self.prazo_execucao = "Prazo de execução do campo vazio!"
-        if not self.data_publicacao:
-            self.data_publicacao = "Data de publicação do campo vazio!"
         super(Edital, self).save(*args, **kwargs)
 
     class Meta:
