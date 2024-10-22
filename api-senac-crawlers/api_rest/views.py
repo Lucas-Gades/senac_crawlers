@@ -67,7 +67,7 @@ def site_list(request):
         return Response({"message": "Erro ao inserir site.", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 # Deletar site por ID
-@api_view(['DELETE'])
+@api_view(['DELETE', 'GET'])
 def site_delete(request, pk):
     try:
         site = Site.objects.get(pk=pk)
@@ -77,7 +77,7 @@ def site_delete(request, pk):
         return Response({"message": "Site não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
 # Atualizar site por ID
-@api_view(['PUT'])
+@api_view(['PUT', 'GET'])
 def site_update(request, pk):
     try:
         site = Site.objects.get(pk=pk)
@@ -106,7 +106,7 @@ def usuario_list(request):
         return Response({"message": "Erro ao inserir usuário.", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 # Deletar usuário por ID
-@api_view(['DELETE'])
+@api_view(['DELETE', 'GET'])
 def usuario_delete(request, pk):
     try:
         usuario = Usuario.objects.get(pk=pk)
@@ -116,7 +116,7 @@ def usuario_delete(request, pk):
         return Response({"message": "Usuário não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
 # Atualizar usuário por ID
-@api_view(['PUT'])
+@api_view(['PUT', 'GET'])
 def usuario_update(request, pk):
     try:
         usuario = Usuario.objects.get(pk=pk)
