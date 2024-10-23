@@ -11,6 +11,7 @@ urlpatterns = [
     path('editais/atualizar/<int:pk>/', views.edital_update, name='edital-update'),  # Atualizar edital específico
 
 
+
     # CRUD para Site
     path('sites/', views.site_list, name='site-list'),  # Listar e criar sites
     path('sites/deletar/<int:pk>/', views.site_delete, name='site-detail'),  # Detalhar e deletar site específico

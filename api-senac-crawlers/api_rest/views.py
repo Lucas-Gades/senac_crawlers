@@ -45,12 +45,18 @@ def edital_delete(request, pk):
         return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
 #ATUALIZAR EDITAL POR ID
-@api_view(['PUT'])
+@api_view(['PUT', 'GET'])
 def edital_update(request, pk):
     try:
         edital = Edital.objects.get(pk=pk)
 
+        if request.method == 'GET':
+            # Retorna as informações do edital
+            serializer = EditalSerializer(edital)
+            return Response({"edital": serializer.data}, status=status.HTTP_200_OK)
+
         if request.method == 'PUT':
+            # Atualiza as informações do edital usando o pk da URL
             serializer = EditalSerializer(edital, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -58,7 +64,8 @@ def edital_update(request, pk):
             return Response({"message": "Erro ao atualizar edital.", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     except Edital.DoesNotExist:
         return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
-    
+
+
 
 # CRUD Site
 
