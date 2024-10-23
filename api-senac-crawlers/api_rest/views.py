@@ -45,15 +45,10 @@ def edital_delete(request, pk):
         return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
 #ATUALIZAR EDITAL POR ID
-@api_view(['GET', 'PUT'])
+@api_view(['PUT'])
 def edital_update(request, pk):
     try:
         edital = Edital.objects.get(pk=pk)
-
-        if request.method == 'GET':
-            # Retorna as informações do edital
-            serializer = EditalSerializer(edital)
-            return Response({"edital": serializer.data}, status=status.HTTP_200_OK)
 
         if request.method == 'PUT':
             serializer = EditalSerializer(edital, data=request.data)
