@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(w5bs_=10%6x86es66+^)^3-tf(51vi$_06*3wc%4yyc#62tw&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['senac-crawlers.onrender.com']
+ALLOWED_HOSTS = ['senac-crawlers.onrender.com']
 CORS_ALLOW_ALL_ORIGINS = True  # Permite todas as origens, altere conforme necessário
 
 
