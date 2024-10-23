@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'api_rest',
-    'static',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +78,6 @@ WSGI_APPLICATION = 'api_root.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
 
 DATABASES = {
     'default': {
@@ -126,17 +123,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-# URL onde os arquivos estáticos serão servidos
+
 STATIC_URL = '/static/'
-
-# Diretório onde o Django vai colocar os arquivos coletados
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Diretórios adicionais onde Django vai procurar por arquivos estáticos
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    
-]
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
