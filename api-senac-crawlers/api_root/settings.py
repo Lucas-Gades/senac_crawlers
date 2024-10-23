@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(w5bs_=10%6x86es66+^)^3-tf(51vi$_06*3wc%4yyc#62tw&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['senac-crawlers.onrender.com']
 CORS_ALLOW_ALL_ORIGINS = True  # Permite todas as origens, altere conforme necessário
@@ -128,6 +128,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Diretório para onde os arquivos estáticos serão coletados
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Diretório onde seus arquivos estáticos estão localizados durante o desenvolvimento
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Certifique-se de que DEBUG está desativado no ambiente de produção:
 DEBUG = False
