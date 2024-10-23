@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(w5bs_=10%6x86es66+^)^3-tf(51vi$_06*3wc%4yyc#62tw&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['senac-crawlers.onrender.com']
 CORS_ALLOW_ALL_ORIGINS = True  # Permite todas as origens, altere conforme necessário
@@ -134,7 +134,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Diretórios adicionais onde Django vai procurar por arquivos estáticos
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    
 ]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
