@@ -46,25 +46,18 @@ def edital_delete(request, pk):
 
 #ATUALIZAR EDITAL POR ID
 @api_view(['PUT', 'GET'])
-def edital_update(request, pk):
-    try:
-        edital = Edital.objects.get(pk=pk)
-
-        if request.method == 'GET':
-            # Retorna as informações do edital
+def edital_update(request):
+    if request.method == 'GET':
+        # Supondo que o ID do edital a ser buscado seja passado no corpo da requisição
+        edital_id = request.data.get('id')
+        if not edital_id:
+            return Response({"message": "ID do edital não fornecido."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            edital = Edital.objects.get(id=edital_id)
             serializer = EditalSerializer(edital)
             return Response({"edital": serializer.data}, status=status.HTTP_200_OK)
-
-        if request.method == 'PUT':
-            # Atualiza as informações do edital usando o pk da URL
-            serializer = EditalSerializer(edital, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"message": "Edital atualizado com sucesso!", "edital": serializer.data}, status=status.HTTP_200_OK)
-            return Response({"message": "Erro ao atualizar edital.", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-    except Edital.DoesNotExist:
-        return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
-
+        except Edital.DoesNotExist:
+            return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
 
 
 # CRUD Site
