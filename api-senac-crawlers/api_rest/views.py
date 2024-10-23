@@ -56,13 +56,11 @@ def edital_update(request, pk):
             return Response({"edital": serializer.data}, status=status.HTTP_200_OK)
 
         if request.method == 'PUT':
-            # Atualiza as informações do edital
             serializer = EditalSerializer(edital, data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({"message": "Edital atualizado com sucesso!", "edital": serializer.data})
+                return Response({"message": "Edital atualizado com sucesso!", "edital": serializer.data}, status=status.HTTP_200_OK)
             return Response({"message": "Erro ao atualizar edital.", "errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
     except Edital.DoesNotExist:
         return Response({"message": "Edital não encontrado."}, status=status.HTTP_404_NOT_FOUND)
     
